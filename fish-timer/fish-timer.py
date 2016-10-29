@@ -13,7 +13,7 @@ def main():
 # turn fishpump on and then schedule it to turn off after ON_DURATION
 def fish_pump_on ():
     switch_on()
-    logger.info("Switching on")
+    logging.info("Switching on")
     s = sched.scheduler(time.time, time.sleep)
     s.enter(ON_DURATION, 1, fish_pump_off, ())
     s.run()
@@ -21,7 +21,7 @@ def fish_pump_on ():
 # turn fishpump off and then schedule it to turn on after OFF_DURATION
 def fish_pump_off ():
     switch_off()
-    logger.info("Switching off")
+    logging.info("Switching off")
     s = sched.scheduler(time.time, time.sleep)
     s.enter(OFF_DURATION, 1, fish_pump_on, ())
     s.run()
