@@ -1,11 +1,14 @@
 import sched, time
 from energenie import switch_on, switch_off
-from .logger import logger
+import logging
 
 ON_DURATION = 5 * 60 # 5 minutes
 OFF_DURATION = 10 * 60 # 10 minutes
 
-
+def main():
+    FORMAT = '%(asctime)-15s %(message)s'
+    logging.basicConfig(filename='fish-timer.log', level=logging.INFO, format=FORMAT)
+    fish_pump_on()
 
 # turn fishpump on and then schedule it to turn off after ON_DURATION
 def fish_pump_on ():
@@ -23,4 +26,9 @@ def fish_pump_off ():
     s.enter(OFF_DURATION, 1, fish_pump_on, ())
     s.run()
 
-fish_pump_on()
+
+
+
+
+if __name__ == '__main__':
+    main()
